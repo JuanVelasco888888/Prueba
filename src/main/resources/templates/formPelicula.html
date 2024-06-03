@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Nueva Película</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/css/swiper.min.css" integrity="sha256-fUHMgGeFAqrzGB8vAPRlU3c/wNqTq5KQ8toq5kcg8fc=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMM8jWqg4cktDgi5uPYnT8EN/zddHxQ+ldFbI1k" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: #301C41;
+            color: #f8f8f2; /* Texto blanco */
+            margin: 0; /* Eliminar el margen predeterminado */
+        }
+        .menu-superior {
+            position: fixed; /* Fijar en la parte superior */
+            top: 0; /* Alinear al borde superior */
+            width: 100%; /* Ancho completo */
+            background-color: #301C41; /* Fondo morado oscuro */
+            color: white;
+            padding: 10px 0;
+            z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+        }
+        .menu-superior a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .menu-superior a:hover {
+            color: #6F95FF; /* Azul al pasar el ratón */
+        }
+        .container {
+            max-width: 800px; /* Ancho del contenedor */
+            margin: 120px auto 50px; /* Centrar y agregar margen superior e inferior */
+            padding: 20px;
+            border-radius: 10px; /* Bordes redondeados */
+            background-color: #413B6B; /* Fondo morado oscuro */
+            color: white;
+        }
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            color: #6F95FF; /* Azul para el título */
+            text-align: center; /* Centrar título */
+            background-color: #301C41; /* Fondo morado oscuro */
+            padding: 10px;
+            border-radius: 10px;
+        }
+        /* Estilos del formulario */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-weight: bold;
+            color: #ced4da; /* Gris claro para etiquetas */
+            text-align: center;
+        }
+        textarea.form-control {
+            height: 120px; /* Área de texto más alta */
+            resize: vertical; /* Permitir cambio de tamaño vertical */
+        }
+        .btn-primary {
+            width: 150px; /* Botón más ancho */
+            padding: 10px 20px; /* Más relleno */
+            border-radius: 5px; /* Bordes redondeados */
+            background-color: #5C65C0; /* Color de botón azul oscuro */
+            border-color: #6F95FF;
+            color: #f8f8f2; /* Texto blanco */
+            transition: background-color 0.3s ease; /* Efecto de transición suave al pasar el ratón */
+        }
+        .btn-primary:hover {
+            background-color: #6F95FF; /* Azul más claro al pasar el ratón */
+            border-color: #6F95FF;
+        }
+        .btn-secondary {
+            width: 150px; /* Botón más ancho */
+            padding: 10px 20px; /* Más relleno */
+            border-radius: 5px; /* Bordes redondeados */
+            color: #f8f8f2; /* Texto blanco */
+            transition: background-color 0.3s ease; /* Efecto de transición suave al pasar el ratón */
+        }
+        /* Estilos del campo de entrada */
+        .form-control {
+            border: 1px solid #ced4da; /* Borde gris claro */
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); /* Sombra interna sutil */
+            padding: 10px; /* Agregar algo de relleno */
+            background-color: #22223b; /* Fondo morado oscuro */
+            color: #f8f8f2; /* Texto blanco */
+        }
+        .form-control:focus {
+            border: 1px solid #6F95FF; /* Borde azul al enfocar */
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); /* Sombra más prominente */
+        }
+        select.form-control {
+        height: 50px; /* Ajustar la altura según sea necesario */
+    }
+        select#genero, select#duracion ,select#clasificacion {
+        width: auto; /* Ajustar el ancho automáticamente al contenido */
+        display: inline-block; /* Asegurar que no se expanda más allá del contenido */
+    }
+    </style>
+</head>
+<body>
+    <div class="row menu-superior">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+            <div class="logo mr-auto">
+                <h4 class="mb-0">Cinema+</h4>
+            </div>
+            <nav>
+                <a th:href="@{/index}"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a>
+                <a th:href="@{/administradores/lista}"><i class="fas fa-users"></i>&nbsp;&nbsp;Crear Administrador</a>
+                <a th:href="@{/usuarios/lista}"><i class="fas fa-users"></i>&nbsp;&nbsp;Crear Usuario</a>
+                <a th:href="@{/contacto/crear}"><i class="fas fa-film"></i>&nbsp;&nbsp;Conocenos</a>
+                <a th:href="@{/promociones/crear}"><i class="fas fa-film"></i>&nbsp;&nbsp;Promociones</a>
+                <a th:href="@{/sala/crear}"><i class="fas fa-film"></i>&nbsp;&nbsp;Sala</a>
+                <a th:href="@{/sala/lista}"><i class="fas fa-film"></i>&nbsp;&nbsp;List Sala</a>
+                <a th:href="@{/pelicula/crear}"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Crear Películas</a>
+                <a th:href="@{/pelicula/lista}"><i class="fas fa-film"></i>&nbsp;&nbsp;List Película</a>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+    <h1>Nueva Película</h1>
+    <form th:action="@{/pelicula/save}" th:object="${pelicula}" method="post" enctype="multipart/form-data">
+        <!-- Primera fila: Título y Director -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="titulo" class="form-label">Título:</label>
+                    <input type="text" id="titulo" class="form-control" th:field="*{titulo}" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="director" class="form-label">Director:</label>
+                    <input type="text" id="director" class="form-control" th:field="*{director}" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Segunda fila: Sinopsis -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="sinopsis" class="form-label">Sinopsis:</label>
+                    <textarea id="sinopsis" class="form-control" th:field="*{sinopsis}"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tercera fila: Género, Duración, Clasificación -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="genero" class="form-label">Género</label>
+                    <select class="form-control" id="genero" th:field="*{genero}">
+                        <option value="Aventura">Aventura</option>
+                        <option value="Comedia">Comedia</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Acción">Acción</option>
+                        <option value="Terror">Terror</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="duracion" class="form-label">Duración</label>
+                    <select class="form-control" id="duracion" th:field="*{duracion}">
+                        <option value="1hora">1 hora</option>
+                        <option value="1:30hora">1:30 hora</option>
+                        <option value="2horas">2 horas</option>
+                        <option value="2:30horas">2:30 horas</option>
+                        <option value="3horas">3 horas</option>
+                        <option value="3:30horas">3:30 horas</option>
+                        <option value="4horas">4 horas</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="clasificacion" class="form-label">Clasificación</label>
+                    <select class="form-control" id="clasificacion" th:field="*{clasificacion}">
+                        <option value="G">G</option>
+                        <option value="PG">PG</option>
+                        <option value="PG-13">PG-13</option>
+                        <option value="R">R</option>
+                        <option value="NC-17">NC-17</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cuarta fila: Horario, Fecha, Imagen -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="horario" class="form-label">Horario</label>
+                    <select class="form-control" id="horario" th:field="*{horario}">
+                        <option value="9am-11am">9:00 am - 11:00 am</option>
+                        <option value="11pm-12:30pm">11:00 pm - 12:30 pm</option>
+                        <option value="1pm-3pm">1:00 pm - 3:00 pm</option>
+                        <option value="3pm-4:30pm">3:00 pm - 4:30 pm</option>
+                        <option value="4:30pm-6pm">4:30 pm - 6:00 pm</option>
+                        <option value="6pm-8pm">6:00 pm - 8:00 pm</option>
+                        <option value="9pm-11pm">9:00 pm - 11:00 pm</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="fecha" class="form-label">Fecha:</label>
+                    <input type="date" id="fecha" class="form-control" th:field="*{fecha}" />
+                </div>
+            </div>
+<div class="col-md-4">
+    <label for="imagen" class="form-label">Imagen:</label>
+    <input type="file" id="imagen" name="imagen" />
+</div>
+
+            </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="/pelicula/lista" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+                

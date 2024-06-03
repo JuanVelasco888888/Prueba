@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Películas</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: #1c0b2b;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #6F95FF;
+        }
+
+        #searchInput {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            font-size: 16px;
+        }
+
+        #peliculasTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #301C41;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #peliculasTable th, #peliculasTable td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            vertical-align: middle; /* Asegura la alineación vertical */
+        }
+
+        #peliculasTable th {
+            background-color: #A131FF;
+            color: #fff;
+        }
+
+        #peliculasTable td {
+            color: white;
+        }
+
+        #peliculasTable tr:nth-child(even) {
+            background-color: #301C41;
+        }
+
+        #peliculasTable tr:hover {
+            background-color: #6F95FF;
+        }
+
+        #peliculasTable td img {
+            width: 100px;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        .imagen-columna {
+            text-align: center; /* Centra el contenido de la celda */
+        }
+
+        button.boton-personalizado {
+            background-color:  #301C41;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        button.boton-personalizado:hover {
+            background-color: #00FF00;
+            box-shadow: 0 0 10px #00FF00;
+        }
+    </style>
+</head>
+<body>
+    <h1>Buscar Películas por Género</h1>
+    <input type="text" id="searchInput" placeholder="Buscar por género...">
+    <button id="searchButton" class="boton-personalizado">Buscar</button>
+    <p style="margin-left:10px;">Puedes Escribir entre las Opciones de Aventura - Comedia - Drama - Acción - Terror</p>
+    <table id="peliculasTable">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Género</th>
+                <th>Poster Promocional</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Resultados de la búsqueda se mostrarán aquí -->
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            $('#searchButton').on('click', function() {
+                var genero = $('#searchInput').val();
+                $.ajax({
+                    url: '/pelicula/buscar',
+                    type: 'GET',
+                    data: { genero: genero },
+                    success: function(peliculas) {
+                        $('#peliculasTable tbody').empty();
+                        peliculas.forEach(function(pelicula) {
+                            $('#peliculasTable tbody').append(
+                                '<tr>' +
+                                    '<td>' + pelicula.titulo + '</td>' +
+                                    '<td>' + pelicula.genero + '</td>' +
+                                    '<td class="imagen-columna"><img src="' + pelicula.imagenUrl + '" alt="Imagen de la película"/></td>' +
+                                '</tr>'
+                            );
+                        });
+                    },
+                    error: function() {
+                        alert("Error en la búsqueda de películas.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

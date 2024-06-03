@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/styles/styleForm.css">
+<title>Formulario Registro Usuario</title>
+</head>
+<body>
+	<form th:action="@{/usuarios/save}" th:object="${usuarios}"
+		method="post">
+		<h2>Registrarse</h2>
+		<div class="inputBox">
+			<input th:field="*{id}" id="id" type="text" name="id" required>
+			<label for="id">Numero &nbsp Identificación</label>
+			<div id="alert-id" class="alert">Solo se permiten números</div>
+		</div>
+		<div class="inputBox">
+			<input th:field="*{primerNombre}" type="text" id="primerNombre"
+				name="primerNombre" required> <label for="primerNombre">Primer
+				&nbsp Nombre</label>
+			<div id="alert-primerNombre" class="alert">Solo se permiten
+				letras</div>
+		</div>
+		<div class="inputBox">
+			<input th:field="*{segundoNombre}" id="segundoNombre"
+				name="segundoNombre" type="text"> <label for="segundoNombre">Segundo
+				&nbsp Nombre</label>
+			<div id="alert-segundoNombre" class="alert">Solo se permiten
+				letras</div>
+		</div>
+		<div class="inputBox">
+			<input th:field="*{primerApellido}" id="primerApellido" type="text"
+				required name="primerApellido"> <label for="primerApellido">Primer
+				&nbsp Apellido</label>
+			<div id="alert-primerApellido" class="alert">Solo se permiten
+				letras</div>
+		</div>
+		<div class="inputBox">
+			<input th:field="*{segundoApellido}" id="segundoApellido" type="text"
+				required name="segundoApellido"> <label
+				for="segundoApellido">Segundo &nbsp Apellido</label>
+			<div id="alert-segundoApellido" class="alert">Solo se permiten
+				letras</div>
+		</div>
+		<div class="inputBox">
+			<input th:field="*{correo}" id="correo" type="email" required
+				name="correo"> <label for="correo">Correo</label>
+			<div id="alert-correo" class="alert">Introduce una dirección de
+				correo válida</div>
+		</div>
+		<div class="inputBox">
+			<input th:field="*{telefono}" id="telefono" type="text" required
+				name="telefono"> <label for="telefono">Telefono</label>
+			<div id="alert-telefono" class="alert">Solo se permiten números</div>
+		</div>
+		<div class="inputBox">
+			<input th:field="*{ciudad}" id="ciudad" type="text" required
+				name="ciudad"> <label for="ciudad">Ciudad</label>
+			<div id="alert-ciudad" class="alert">Solo se permiten letras</div>
+		</div>
+		<div class="inputBox fixed-label">
+			<input th:field="*{fechaNacimiento}" id="fechaNacimiento" type="date"
+				required name="fechaNacimiento"> <label
+				for="fechaNacimiento">Fecha &nbsp de &nbsp Nacimiento</label>
+		</div>
+		<div class="inputBox">
+			<input th:field="*{contraseña}" id="contraseña" name="contraseña"
+				type="password" required> <label for="contraseña">Contraseña</label>
+		</div>
+		<div class="inputBox">
+			<input id="confirmarContraseña" name="confirmarContraseña"
+				type="password" required> <label for="confirmarContraseña">Confirmar
+				&nbsp contraseña</label>
+			<div id="alert-confirmarContraseña" class="alert">Las
+				contraseñas no coinciden</div>
+		</div>
+		<div class="inputBox">
+			<input type="submit" value="Crear">
+		</div>
+		<p>
+			¿Ya tienes una cuenta? <a href="/usuario/login">Iniciar Sesión</a>
+		</p>
+	</form>
+	<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mantener la animación de las etiquetas al cargar la página
+    document.querySelectorAll('label').forEach(label => {
+        label.innerHTML = label.innerText.split('').map((letter, i) =>
+            `<span style="transition-delay: ${i * 50}ms">${letter}</span>`
+        ).join('');
+    });
+
+    // Agregar la clase 'has-content' si el campo ya tiene un valor
+    document.querySelectorAll('.inputBox input').forEach(input => {
+        if (input.value !== '') {
+            input.classList.add('has-content');
+        }
+        input.addEventListener('input', () => {
+            if (input.value !== '') {
+                input.classList.add('has-content');
+            } else {
+                input.classList.remove('has-content');
+            }
+        });
+    });
+});
+
+    </script>
+
+	<!-- Este es el scrit validacion de campos -->
+
+	<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('id').addEventListener('input', function (e) {
+        var value = e.target.value;
+        var alertBox = document.getElementById('alert-id');
+        if (!/^\d*$/.test(value)) {
+            alertBox.style.display = 'block';
+        } else {
+            alertBox.style.display = 'none';
+        }
+    });
+
+    document.getElementById('primerNombre').addEventListener('input', function (e) {
+        var value = e.target.value;
+        var alertBox = document.getElementById('alert-primerNombre');
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/.test(value)) {
+            alertBox.style.display = 'block';
+        } else {
+            alertBox.style.display = 'none';
+        }
+    });
+
+    document.getElementById('segundoNombre').addEventListener('input', function (e) {
+        var value = e.target.value;
+        var alertBox = document.getElementById('alert-segundoNombre');
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/.test(value)) {
+            alertBox.style.display = 'block';
+        } else {
+            alertBox.style.display = 'none';
+        }
+    });
+
+    document.getElementById('primerApellido').addEventListener('input', function (e) {
+        var value = e.target.value;
+        var alertBox = document.getElementById('alert-primerApellido');
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/.test(value)) {
+            alertBox.style.display = 'block';
+        } else {
+            alertBox.style.display = 'none';
+        }
+    });
+
+    document.getElementById('segundoApellido').addEventListener('input', function (e) {
+        var value = e.target.value;
+        var alertBox = document.getElementById('alert-segundoApellido');
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/.test(value)) {
+            alertBox.style.display = 'block';
+        } else {
+            alertBox.style.display = 'none';
+        }
+    });
+
+    document.getElementById('correo').addEventListener('input', function (e) {
+        var value = e.target.value;
+        var alertBox = document.getElementById('alert-correo');
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(value)) {
+            alertBox.style.display = 'block';
+        } else {
+            alertBox.style.display = 'none';
+        }
+    });
+
+    document.getElementById('telefono').addEventListener('input', function (e) {
+        var value = e.target.value;
+        var alertBox = document.getElementById('alert-telefono');
+        if (!/^\d*$/.test(value)) {
+            alertBox.style.display = 'block';
+        } else {
+            alertBox.style.display = 'none';
+        }
+    });
+
+    document.getElementById('ciudad').addEventListener('input', function (e) {
+        var value = e.target.value;
+        var alertBox = document.getElementById('alert-ciudad');
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/.test(value)) {
+            alertBox.style.display = 'block';
+        } else {
+            alertBox.style.display = 'none';
+        }
+    });
+
+    document.getElementById('contraseña').addEventListener('input', validatePasswords);
+    document.getElementById('confirmarContraseña').addEventListener('focus', function() {
+        document.getElementById('confirmarContraseña').addEventListener('input', validatePasswords);
+    });
+
+    function validatePasswords() {
+        var contraseña = document.getElementById('contraseña').value;
+        var confirmarContraseña = document.getElementById('confirmarContraseña').value;
+        var alertBox = document.getElementById('alert-confirmarContraseña');
+        if (contraseña !== confirmarContraseña) {
+            alertBox.style.display = 'block';
+        } else {
+            alertBox.style.display = 'none';
+        }
+    }
+
+    // Prevenir el envío del formulario si las contraseñas no coinciden
+    document.querySelector('form').addEventListener('submit', function(event) {
+        validatePasswords();
+        var alertBox = document.getElementById('alert-confirmarContraseña');
+        if (alertBox.style.display === 'block') {
+            event.preventDefault();
+        }
+    });
+});
+    </script>
+
+
+</body>
+</html>

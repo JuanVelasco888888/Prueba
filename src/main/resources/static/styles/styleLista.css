@@ -1,0 +1,146 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+	font-family: 'Oswald', sans-serif;
+	background-color: #1c0b2b;
+	color: white;
+	
+}
+.menu-superior {
+            background-color: #301C41;
+            color: white;
+            padding: 10px 0;
+}
+.menu-superior a {
+color: white;
+text-decoration: none;
+margin-right: 20px;
+}
+.menu-superior a:hover {
+color: #6F95FF;
+}
+body .boton-personalizado {
+    background-color: #45FF56; /* Color morado */
+    color: white; /* Color blanco para el texto */
+    border: none; /* Sin borde */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 10px 20px; /* Ajuste de relleno */
+    cursor: pointer; /* Cambio de cursor */
+    transition: background-color 0.3s; /* Transición de color */
+}
+
+body .boton-personalizado:hover {
+    background-color: #00FF00; /* Cambio de color al pasar el cursor */
+    box-shadow: 0 0 10px #00FF00; /* Efecto de iluminación */
+}
+
+body .boton-red {
+    background-color: #FF4545; /* Color morado */
+    color: white; /* Color blanco para el texto */
+    border: none; /* Sin borde */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 10px 20px; /* Ajuste de relleno */
+    cursor: pointer; /* Cambio de cursor */
+    transition: background-color 0.3s; /* Transición de color */
+}
+
+body .boton-red:hover {
+    background-color: #FF4545; /* Cambio de color al pasar el cursor */
+    box-shadow: 0 0 10px #FF4545; /* Efecto de iluminación */
+}
+
+body .boton-blue {
+    background-color: #459AFF; /* Color morado */
+    color: white; /* Color blanco para el texto */
+    border: none; /* Sin borde */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 10px 20px; /* Ajuste de relleno */
+    cursor: pointer; /* Cambio de cursor */
+    transition: background-color 0.3s; /* Transición de color */
+}
+
+body .boton-blue:hover {
+    background-color: #459AFF; /* Cambio de color al pasar el cursor */
+    box-shadow: 0 0 10px #459AFF; /* Efecto de iluminación */
+}
+
+body .encabezado-table {
+    background-color: #A131FF; /* Color de fondo morado */
+    color: white; /* Color del texto blanco */
+}
+
+.titulo {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.tabla {
+	margin: 30px auto;
+	width: 500%;
+	background-color: #301c41;
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+select[name="coordinador"] {
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #ced4da;
+	max-width: 300px;
+	/* Ajusta el ancho máximo para limitar el tamaño visible */
+	margin: 0 auto; /* Centra el elemento select */
+}
+
+.form-label {
+	margin-top: 20px;
+	display: block;
+	font-weight: bold;
+	text-align: center; /* Centra la etiqueta */
+}
+
+.form-label2 {
+	margin-top: 20px;
+	display: block;
+	font-weight: bold;
+	text-align: left; /* Centra la etiqueta */
+}
+
+.select-container {
+	text-align: center;
+	/* Centra horizontalmente el contenido del contenedor */
+}
+
+.texto-centrado {
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    text-align: center; /* Alinea el texto en el centro */
+    height: 100%; /* Asegura que el elemento ocupe toda la altura de su contenedor */
+}
+
+/* Estilos para centrar la lista del navbar */
+		.navbar-nav {
+		    margin: auto; /* Centra la lista horizontalmente */
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    height: 100%;
+		}
+		
+		.navbar-nav .nav-item {
+		    padding: 0 10px; /* Espacio entre elementos de la lista */
+		}
+		
+		/* Opcional: Ajustar estilos para los enlaces de navegación */
+		.navbar-nav .nav-link {
+		    color: #333;
+		    font-weight: bold;
+		    text-transform: uppercase;
+		    transition: color 0.3s ease;
+		}
+		
+		.navbar-nav .nav-link:hover {
+		    color: #555;
+		}
+
+

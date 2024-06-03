@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Crear/Editar Reserva</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/css/swiper.min.css" integrity="sha256-fUHMgGeFAqrzGB8vAPRlU3c/wNqTq5KQ8toq5kcg8fc=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMM8jWqg4cktDgi5uPYnT8EN/zddHxQ+ldFbI1k" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: #1c0b2b;
+            color: white;
+        }
+        .menu-superior {
+            background-color: #301C41;
+            color: white;
+            padding: 10px 0;
+        }
+        .menu-superior a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .menu-superior a:hover {
+            color: #6F95FF;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #301c41;
+        }
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #adb5bd;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-weight: bold;
+            color: #ced4da;
+            text-align: center;
+        }
+        textarea.form-control {
+            height: 120px;
+            resize: vertical;
+        }
+        .btn-primary {
+            width: 150px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #459AFF;
+            border-color: #459AFF;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #005FFF;
+            border-color: #005FFF;
+        }
+        .form-control {
+            border: 1px solid #ddd;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+            padding: 10px;
+            background-color: #301c41;
+            color: white;
+        }
+        .form-control:focus {
+            border: 1px solid #6F95FF;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .input-user {
+            background-color: #301c41 !important;
+            color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+            padding: 10px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                max-width: 95%;
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+        }
+        .borderless {
+            border: none !important;
+            box-shadow: none !important;
+        }
+        .seat {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 2px;
+        }
+        .seat.selected {
+            background-color: #459AFF;
+        }
+        #seatMap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .remaining-seats {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row menu-superior">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+            <div class="logo mr-auto">
+                <h4 class="mb-0">Cinema+</h4>
+            </div>
+            <nav>
+                 <a th:href="@{/index}"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a>
+                 <a th:href="@{/contacto/crear}"><i class="fas fa-film"></i>&nbsp;&nbsp;Contacto</a> 
+                 <a th:href="@{/promociones/crear}"><i class="fas fa-film"></i>Promociones</a>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="text-center mb-4">Crear/Editar Reserva</h1>
+        <form th:action="@{/reserva/save}" th:object="${reserva}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <div class="group">
+                NOMBRE USUARIO<input type="text" class="form-control input-user borderless" th:value="${usuario.primerNombre + ' ' + usuario.segundoNombre + ' ' + usuario.primerApellido + ' ' + usuario.segundoApellido}" readonly />
+            </div>
+            <div class="col-md-6">
+			    <div class="form-group">
+			        <label for="idPelicula" class="form-label">Película</label>
+			        <select class="form-control" id="idPelicula" name="idPelicula">
+			            <option value="" disabled selected>Seleccione una película</option>
+			            <option value="gigante de Hierro">Gigante de Hierro</option>
+			            <option value="Force of Nature">Force Of Nature</option>
+			            <option value="Proyecto X">Proyecto X</option>
+			            <option value="Planeta de los Simios">Planeta de los Simios</option>
+			            <option value="Scream">Scream</option>
+			            <option value="ManoDrome">ManoDrome</option>
+			        </select>
+			    </div>
+			</div>
+            <div class="form-group">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="fecha" th:field="*{fecha}" />
+            </div>
+            <div id="seatMap"></div>
+            <div class="remaining-seats">
+                <span id="remainingSeats">Asientos restantes: 105</span>
+            </div>
+            <input type="hidden" id="selectedSitio" name="selectedSitio" th:field="*{numeroAsientos}" />
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+    <script>
+        var totalSeats = 105;
+        var selectedSitio = [];
+
+        function createSeatMap(totalSeats) {
+            var seatMap = document.getElementById("seatMap");
+            for (var i = 1; i <= totalSeats; i++) {
+                var seat = document.createElement("div");
+                seat.className = "seat";
+                seat.innerText = i;
+                seat.addEventListener("click", function() {
+                    var seatNumber = parseInt(this.innerText);
+                    if (this.classList.contains("selected")) {
+                        this.classList.remove("selected");
+                        totalSeats++;
+                        selectedSitio = selectedSitio.filter(seat => seat !== seatNumber);
+                    } else {
+                        if (totalSeats > 0) {
+                            this.classList.add("selected");
+                            totalSeats--;
+                            selectedSitio.push(seatNumber);
+                        } else {
+                            alert("No quedan asientos disponibles");
+                        }
+                    }
+                    document.getElementById("remainingSeats").innerText = "Asientos restantes: " + totalSeats;
+                    document.getElementById("selectedSitio").value = selectedSitio.join(',');
+                });
+                seatMap.appendChild(seat);
+            }
+        }
+
+        window.onload = function() {
+            createSeatMap(totalSeats);
+        };
+    </script>
+</body>
+</html>
