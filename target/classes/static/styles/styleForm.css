@@ -1,0 +1,156 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --clr: #6f95ff;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #1c0b2b;
+    margin: 20px;
+}
+.menu-superior {
+            background-color: #301C41;
+            color: white;
+            padding: 10px 0;
+}
+.menu-superior a {
+color: white;
+text-decoration: none;
+margin-right: 20px;
+}
+.menu-superior a:hover {
+color: #6F95FF;
+}
+form {
+    background: #301c41;
+    padding: 50px 80px 60px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+form h2 {
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    letter-spacing: 0.1em;
+    margin-bottom: 50px;
+}
+
+.inputBox {
+    position: relative;
+    width: 300px;
+    margin-bottom: 50px;
+}
+
+.inputBox input {
+    position: relative;
+    width: 100%;
+    padding: 10px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #413b6b;
+    outline: none;
+    color: white;
+    font-size: 1em;
+    letter-spacing: 0.15em;
+}
+
+.inputBox label {
+    position: absolute;
+    left: 0;
+    padding: 10px 0;
+    pointer-events: none;
+    color: white;
+}
+
+.inputBox label span {
+    position: relative;
+    display: inline-flex;
+    letter-spacing: 0.05em;
+    transition: 0.2s ease-in-out;
+}
+
+.inputBox input:focus~label span,
+.inputBox input.has-content~label span {
+    color: var(--clr);
+    letter-spacing: 0.15em;
+    transform: translateY(-25px);
+}
+
+.inputBox input:focus {
+    border-bottom: 2px solid var(--clr);
+}
+
+.inputBox input[type="submit"] {
+    background: var(--clr);
+    border: none;
+    padding: 15px;
+    border-radius: 50px;
+    color: #1c0b2b;
+    font-weight: 600;
+    font-size: 1.15em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.inputBox input[type="submit"]:hover {
+    letter-spacing: 0.35em;
+}
+
+form p {
+    color: white;
+    text-transform: uppercase;
+}
+
+form p a {
+    color: var(--clr);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+/* Estilo para mantener el label arriba y estático */
+.fixed-label label {
+    top: -20px;
+    /* Ajusta según sea necesario para tu diseño */
+    left: 0;
+    color: var(--clr);
+    letter-spacing: 0.15em;
+    transition: none;
+    transform: none;
+}
+
+.fixed-label input {
+    padding-top: 25px;
+    /* Asegura que el texto no se solape con el label */
+}
+
+/* Asegura que el label no cambie al enfocarse o al ingresar texto */
+.fixed-label input:focus~label span,
+.fixed-label input.has-content~label span {
+    transform: none;
+    color: var(--clr);
+    letter-spacing: 0.15em;
+}
+
+.alert {
+    color: #F91F32;
+    display: none;
+    margin-top: 5px;
+}

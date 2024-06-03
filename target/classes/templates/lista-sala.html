@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Salas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMM8jWqg4cktDgi5uPYnT8EN/zddHxQ+ldFbI1k" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/css/swiper.min.css" integrity="sha256-fUHMgGeFAqrzGB8vAPRlU3c/wNqTq5KQ8toq5kcg8fc=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMM8jWqg4cktDgi5uPYnT8EN/zddHxQ+ldFbI1k" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: #1c0b2b;
+            color: white;
+        }
+         .menu-superior {
+            background-color: #301C41;
+            color: white;
+            padding: 10px 0;
+        }
+        .menu-superior a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .menu-superior a:hover {
+            color: #6F95FF;
+        }
+        
+        .boton-personalizado {
+            background-color: #45FF56; /* Color verde */
+            color: white; /* Color blanco para el texto */
+            border: none; /* Sin borde */
+            border-radius: 10px; /* Bordes redondeados */
+            padding: 10px 20px; /* Ajuste de relleno */
+            cursor: pointer; /* Cambio de cursor */
+            transition: background-color 0.3s; /* Transición de color */
+        }
+        
+        .boton-personalizado:hover {
+            background-color: #00FF00; /* Cambio de color al pasar el cursor */
+            box-shadow: 0 0 10px #00FF00; /* Efecto de iluminación */
+        }
+        
+        .boton-red {
+            background-color: #FF4545; /* Color rojo */
+            color: white; /* Color blanco para el texto */
+            border: none; /* Sin borde */
+            border-radius: 10px; /* Bordes redondeados */
+            padding: 10px 20px; /* Ajuste de relleno */
+            cursor: pointer; /* Cambio de cursor */
+            transition: background-color 0.3s; /* Transición de color */
+            margin-right: 5px;
+            margin: 20px 0; /* Márgenes superior e inferior */
+            text-decoration: none; /* Quitar subrayado */
+        }
+        
+        .boton-red:hover {
+            background-color: #FF0000; /* Cambio de color al pasar el cursor */
+            box-shadow: 0 0 10px #FF0000; /* Efecto de iluminación */
+        }
+        
+        .boton-blue {
+            background-color: #459AFF; /* Color azul */
+            color: white; /* Color blanco para el texto */
+            border: none; /* Sin borde */
+            border-radius: 10px; /* Bordes redondeados */
+            padding: 10px 20px; /* Ajuste de relleno */
+            cursor: pointer; /* Cambio de cursor */
+            transition: background-color 0.3s; /* Transición de color */
+        }
+        
+        .boton-blue:hover {
+            background-color: #005FFF; /* Cambio de color al pasar el cursor */
+            box-shadow: 0 0 10px #005FFF; /* Efecto de iluminación */
+        }
+        
+        .encabezado-table {
+            background-color: #A131FF; /* Color de fondo morado */
+            color: white; /* Color del texto blanco */
+        }
+        
+        .titulo {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .tabla {
+            margin: 40px auto;
+            width: 90%; /* Ajusta el ancho de la tabla según sea necesario */
+            text-align: center;
+        }
+        
+        .tabla-container {
+            padding: 20px; /* Añade relleno para separar la tabla del contenedor */
+            background-color: #301c41; /* Color de fondo para la tabla */
+            border-radius: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #A131FF;
+            color: white;
+        }
+        
+        td {
+            background-color: #301c41;
+            color: white;
+        }
+        
+        a.icon-pencil, a.icon-trash {
+            color: #fff;
+            margin: 0 5px;
+        }
+        
+        a.icon-pencil:hover, a.icon-trash:hover {
+            color: #6F95FF;
+        }
+        
+        h1 {
+            color: #6F95FF;
+        }
+		.boton-agregar {
+            margin-top: 20px; /* Ajusta este valor según lo necesites */
+        }
+    </style>
+</head>
+<body>
+<div class="row menu-superior">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="logo mr-auto">
+                    <h4 class="mb-0">Cinema+</h4>
+                </div>
+                <nav>
+                    <a th:href="@{/index}"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a>
+                    <a th:href="@{/administradores/lista}"><i class="fas fa-users"></i>&nbsp;&nbsp;Crear Cuenta Admin</a>
+                    <a th:href="@{/sala/crear}"><i class="fas fa-film"></i>&nbsp;&nbsp;Crear Sala</a>
+                    <a th:href="@{/pelicula/crear}"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Crear Películas</a>
+                    <a th:href="@{/sala/lista}"><i class="fas fa-film"></i>&nbsp;&nbsp;Listado de Salas</a>
+                    <a th:href="@{/usuarios/lista}"><i class="fas fa-users"></i>&nbsp;&nbsp;Listado de Usuarios</a>
+                    <a th:href="@{/pelicula/lista}"><i class="fas fa-film"></i>&nbsp;&nbsp;Listado de Películas</a>
+                </nav>
+            </div>
+        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 boton-agregar">
+                <a class="boton-personalizado" th:href="@{crear}" style="text-decoration: none !important;"><i class="bi bi-person-plus-fill"></i>Agregar</a>
+            </div>
+        </div>
+        <h1 class="titulo">Lista de Salas</h1>
+        <div class="tabla-container">
+            <table class="tabla">
+                <thead>
+                    <tr class="encabezado-table">
+                        <th>Numero</th>
+                        <th>Tipo de Pantalla</th>
+                        <th>Sitios Seleccionados</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="sala : ${salas}">
+                        <td th:text="${sala.numero}">Número</td>
+                        <td th:text="${sala.Tipo_Pantalla}">Tipo de Pantalla</td>
+                        <td th:text="${#strings.arrayJoin(sala.selectedSitio, ', ')}">Sitios Seleccionados</td>
+                        <td>
+                            <a th:href="@{/sala/edit/{id}(id=${sala.id})}" class="boton-blue"><i class="bi bi-pencil-fill"></i></a>
+                            <a th:href="@{/sala/delete/{id}(id=${sala.id})}" class="boton-red"><i class="bi bi-trash3-fill"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

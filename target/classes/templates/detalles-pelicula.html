@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Detalles de la Película</title>
+    <style>
+        /* Estilos con la paleta de colores proporcionada */
+        body {
+            background-color: #413B6B;
+            color: #fff;
+            font-family: 'Oswald', sans-serif;
+        }
+        .container {
+            margin-top: 20px;
+            display: flex; /* Utilizamos flexbox para alinear los elementos */
+            justify-content: center; /* Centramos horizontalmente */
+        }
+        .pelicula-details {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            background-color: #1C0B2B;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            text-align: left; /* Alineación a la izquierda */
+            display: flex; /* Utilizamos flexbox para alinear los elementos */
+        }
+        .pelicula-details img {
+            max-width: 300px; /* Limitamos el ancho de la imagen */
+            height: auto;
+            border-radius: 10px;
+            margin-right: 20px; /* Espaciado a la derecha */
+            animation: shake 0.5s; /* Animación */
+        }
+        @keyframes shake {
+            0% { transform: translateY(0); }
+            25% { transform: translateY(-5px); }
+            50% { transform: translateY(5px); }
+            75% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+        .pelicula-details h2 {
+            color: #6B0000;
+            margin-bottom: 10px;
+        }
+        .pelicula-details p {
+            margin-bottom: 10px; /* Ajustamos el espacio entre párrafos */
+        }
+        .pelicula-details strong {
+            color: #6B0000;
+        }
+        /* Estilos para los enlaces */
+        a {
+            color: #6B0000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #1C0B2B;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pelicula-details">
+            <img th:src="${pelicula.imagenUrl}" alt="Imagen de la Película" />
+            <div>
+                <h2 th:text="${pelicula.titulo}"></h2>
+                <p><strong>Director:</strong><span th:text="${pelicula.director}"></p>
+                
+                <p><strong>Género:</strong><span th:text="${pelicula.genero}"></span></p>
+                
+                <p><strong>Duración:</strong> <span th:text="${pelicula.duracion}"></span></p>
+                
+                <p><strong>Clasificación:</strong><span th:text="${pelicula.clasificacion}"></span>
+                 </p>
+                <p><strong>Sinopsis:</strong> <br>
+                <span th:text="${pelicula.sinopsis}"></span></p>
+                <p><strong>Horario:</strong><span th:text="${pelicula.horario}"></span></p>
+                
+                <p><strong>Fecha De Estreno:</strong><span th:text="${#dates.format(pelicula.fecha, 'dd/MM/yyyy')}"></span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/styles/styleLogin.css">
+
+<head>
+<meta charset="UTF-8">
+<title>Formulario Login Usuario</title>
+<body>
+	<div class="box">
+		<span class="borderLine"></span>
+		<form th:action="@{/login/usuario}" method="POST">
+			<h2>Iniciar Sesión</h2>
+			<div class="inputBox">
+				<input type="email" required="required" name="correo"> <span>Correo</span>
+				<i></i>
+			</div>
+			<div class="inputBox">
+				<input type="password" required="required" name="contraseña">
+				<span>Contraseña</span> <i></i>
+			</div>
+			<div class="links">
+				<!--<a href="#">Olvide mi contraseña</a>--> <a href="/usuarios/crear">Registrarme</a>
+			</div>
+			<div th:if="${error}" class="error-message">
+				<p th:text="${error}"></p>
+			</div>
+			<input type="submit" value="Iniciar Sesión">
+		</form>
+	</div>
+	<script th:if="${error}">
+    document.querySelector('.error-message').style.display = 'block';
+</script>
+</body>
+</html>
