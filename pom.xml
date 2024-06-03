@@ -58,19 +58,25 @@
 
 	</dependencies>
 
-	<build>
+<build>
     <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.2.0</version>
             <configuration>
-                <compilerArgs>
-                    <arg>-parameters</arg>
-                </compilerArgs>
+                <archive>
+                    <manifest>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        <mainClass>com.app.parcial</mainClass>
+                    </manifest>
+                </archive>
             </configuration>
         </plugin>
     </plugins>
 </build>
+
+
 
 
 </project>
