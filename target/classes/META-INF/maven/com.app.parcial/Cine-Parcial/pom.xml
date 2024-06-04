@@ -14,7 +14,6 @@
 	<name>Cine-Parcial</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-      <goals-goal>package</goals-goal>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
@@ -56,9 +55,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
-
 <build>
     <plugins>
         <plugin>
@@ -75,11 +72,5 @@
         </plugin>
     </plugins>
 </build>
-
-
-
-
-
-
 
 </project>
