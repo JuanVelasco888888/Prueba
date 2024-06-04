@@ -68,13 +68,14 @@
                 <archive>
                     <manifest>
                         <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                        <mainClass>com.app.parcial</mainClass>
+                        <mainClass>com.app.parcial.CineParcialApplication</mainClass>
                     </manifest>
                 </archive>
             </configuration>
         </plugin>
     </plugins>
 </build>
+
 
 
 
