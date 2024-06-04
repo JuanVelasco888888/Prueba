@@ -62,8 +62,7 @@
     <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.2.0</version>
+            <artifactId>maven-jar-plugin</artifactId>            
             <configuration>
                 <archive>
                     <manifest>
@@ -75,6 +74,7 @@
         </plugin>
     </plugins>
 </build>
+
 
 
 
